@@ -20,8 +20,8 @@ The reference designs are available in the [`design`](design) folder.
 
 ### Links
 
-- Solution URL: Add your repository URL here
-- Live Site URL: Add your deployed site URL here
+- Solution URL: [Live Repository](https://github.com/L3viath4n-365/tip-calculator-app-main)
+- Live Site URL: [Live Site](https://tip-calculator-app-main.onrender.com)
 
 ## My process
 
