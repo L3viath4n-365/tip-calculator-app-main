@@ -20,9 +20,11 @@
 <body
   class="min-h-screen bg-[hsl(185,41%,84%)] text-[hsl(183,100%,15%)] font-extrabold flex flex-col items-center justify-center">
 
-  <div class="w-full flex justify-center items-center py-10 md:py-16">
-    <img src="images/logo.svg" alt="splitter logo">
-  </div>
+  <header>
+    <div class="w-full flex justify-center items-center py-10 md:py-16">
+      <img src="images/logo.svg" alt="splitter logo">
+    </div>
+  </header>
 
   <main
     class="w-full max-w-230 bg-white flex flex-col p-6 rounded-t-3xl shadow-lg gap-8 md:flex-row md:rounded-3xl md:p-8 md:gap-8">
@@ -32,7 +34,7 @@
 
         <label for="bill" class="capitalize">bill</label>
         <div class="relative w-full">
-          <p class="absolute left-5 top-[50%] translate-y-[-50%]">$</p>
+          <h1 class="absolute left-5 top-[50%] translate-y-[-50%]">$</h1>
           <input name="bill" type="number" onmousewheel="preventDefault();" id="bill" placeholder="0" min="0"
             step="0.01" value="<%= bill %>" required
             class="text-right text-2xl p-2 px-5 outline-0 bg-[hsl(189,47%,97%)] w-full rounded focus:ring-2 focus:ring-[hsl(172,67%,45%)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
@@ -93,7 +95,7 @@
 
       <form action="/" method="get" class="flex flex-col justify-between gap-5 mt-10">
         <button type="submit" id="reset"
-          class="bg-[hsl(172,67%,45%)] opacity-40 cursor-not-allowed text-[hsl(183,100%,15%)] rounded h-12 w-full uppercase">reset</button>
+          class="bg-[hsl(172,67%,45%)] text-[hsl(183,100%,15%)] rounded h-12 w-full uppercase">reset</button>
       </form>
     </div>
 

@@ -38,12 +38,12 @@ app.use((req, res, next) => {
 app.use('/', apiRouter);
 
 // 404 ROUTE HANDLER
-app.use((req, res) => {
+app.use((_req, res) => {
     res.status(404).render('index', { data: null, error: '404 — Page not found' });
 });
 
 // GLOBAL ERROR HANDLER (Secure Logging vs Presentation Boundary)
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
     if (nodeEnv === 'development') {
         console.error(err.stack);
     } else {
