@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="src/output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+
+  <title>Frontend Mentor | Tip calculator app</title>
+</head>
+
+<body
+  class="min-h-screen bg-[hsl(185,41%,84%)] text-[hsl(183,100%,15%)] font-extrabold flex flex-col items-center justify-center">
+
+  <div class="w-full flex justify-center items-center py-10 md:py-16">
+    <img src="images/logo.svg" alt="splitter logo">
+  </div>
+
+  <main
+    class="w-full max-w-230 bg-white flex flex-col p-6 rounded-t-3xl shadow-lg gap-8 md:flex-row md:rounded-3xl md:p-8 md:gap-8">
+
+    <div class="flex w-full md:w-1/2">
+      <form action="/" method="post" class="flex flex-col w-full gap-6">
+
+        <label for="bill" class="capitalize">bill</label>
+        <div class="relative w-full">
+          <p class="absolute left-5 top-[50%] translate-y-[-50%]">$</p>
+          <input name="bill" type="number" onmousewheel="preventDefault();" id="bill" placeholder="0" min="0"
+            step="0.01" value="<%= bill %>" required
+            class="text-right text-2xl p-2 px-5 outline-0 bg-[hsl(189,47%,97%)] w-full rounded focus:ring-2 focus:ring-[hsl(172,67%,45%)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+        </div>
+
+        <fieldset class="flex flex-col gap-3">
+          <legend>Select Tip %</legend>
+          <div class="text-white grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <button type="submit" name="percentage" value="0.05"
+              class="bg-[hsl(183,100%,15%)] hover:bg-[hsl(172,67%,45%)] hover:text-[hsl(183,100%,15%)] rounded h-12">5%</button>
+            <button type="submit" name="percentage" value="0.10"
+              class="bg-[hsl(183,100%,15%)] hover:bg-[hsl(172,67%,45%)] hover:text-[hsl(183,100%,15%)] rounded h-12">10%</button>
+            <button type="submit" name="percentage" value="0.15"
+              class="bg-[hsl(183,100%,15%)] hover:bg-[hsl(172,67%,45%)] hover:text-[hsl(183,100%,15%)] rounded h-12">15%</button>
+            <button type="submit" name="percentage" value="0.25"
+              class="bg-[hsl(183,100%,15%)] hover:bg-[hsl(172,67%,45%)] hover:text-[hsl(183,100%,15%)] rounded h-12">25%</button>
+            <button type="submit" name="percentage" value="0.50"
+              class="bg-[hsl(183,100%,15%)] hover:bg-[hsl(172,67%,45%)] hover:text-[hsl(183,100%,15%)] rounded h-12">50%</button>
+
+            <input type="number" name="customPercentage" placeholder="Custom" step="1" min="0"
+              value="<%= customPercentage %>"
+              class="bg-[hsl(189,47%,97%)] text-center text-[hsl(183,100%,15%)] rounded h-12 outline-none focus:ring-2 focus:ring-[hsl(172,67%,45%)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+          </div>
+        </fieldset>
+
+        <label for="people" class="capitalize flex justify-between">Number of People <span
+            class="text-[hsl(13,70%,61%)]">
+            <%= typeof error !=='undefined' ? error : '' %>
+          </span></label>
+        <div class="relative w-full">
+          <img src="images/icon-person.svg" alt="Person icon" class="absolute left-5 top-[50%] translate-y-[-50%]">
+          <input name="people" type="number" onmousewheel="preventDefault();" id="people" placeholder="0" min="1"
+            value="<%= people %>" required
+            class="text-right text-2xl p-2 px-5 outline-0 bg-[hsl(189,47%,97%)] w-full rounded focus:ring-2 focus:ring-[hsl(172,67%,45%)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+        </div>
+      </form>
+    </div>
+
+    <div class="min-h-75 p-6 flex flex-col justify-between bg-[hsl(183,100%,15%)] rounded-2xl md:w-1/2 md:p-10">
+
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-sm text-gray-200">Tip Amount</p>
+          <p class="text-xs text-gray-200">/ person</p>
+        </div>
+        <p class="text-[hsl(172,67%,45%)] text-3xl md:text-5xl" id="tipAmount">$<%= tipAmount %>
+        </p>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-sm text-gray-200 capitalize">total</p>
+          <p class="text-xs text-gray-200">/ person</p>
+        </div>
+        <p class="text-[hsl(172,67%,45%)] text-3xl md:text-5xl" id="total">$<%= total %>
+        </p>
+      </div>
+
+      <form action="/" method="get" class="flex flex-col justify-between gap-5 mt-10">
+        <button type="submit" id="reset"
+          class="bg-[hsl(172,67%,45%)] opacity-40 cursor-not-allowed text-[hsl(183,100%,15%)] rounded h-12 w-full uppercase">reset</button>
+      </form>
+    </div>
+
+  </main>
+
+  <footer class="font-medium text-center">
+    Challenge by <a class="text-blue-700 underline" href="https://www.frontendmentor.io?ref=challenge">Frontend
+      Mentor</a>.
+    Coded by <a class="text-blue-700 underline" href="https://github.com/l3viath4n-365">L3VIATH4N</a>.
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      const resetBtn = $('#reset');
+      const bill = $('input[name="bill"]');
+      const people = $('input[name="people"]');
+
+      function syncResetButton() {
+        const isEmpty = [bill.val(), people.val()].some(value => String(value).trim() === '');
+
+        resetBtn.css({
+          opacity: isEmpty ? '0.4' : '1',
+          cursor: isEmpty ? 'not-allowed' : 'pointer'
+        });
+      }
+
+      [bill, people].forEach($input => {
+        $input.on('input change', syncResetButton);
+      });
+
+      syncResetButton();
+    });
+  </script>
+
+</body>
+
+</html>
